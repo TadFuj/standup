@@ -1,0 +1,15 @@
+# OS-specific junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# NGINX runtime files
+logs/
+logs/*.log
+logs/nginx.pid
+
+temp/
+
+# VS Code (keep tasks/settings if you prefer committing them)
+# Uncomment to ignore all VS Code workspace files:
+# .vscode/

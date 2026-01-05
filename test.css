@@ -1,0 +1,23 @@
+#test-me {
+  color: green;
+}
+
+:root {
+  --main-bg-color: rgb(10, 0, 50);
+  --main-txt-color: rgb(230, 50, 70);
+}
+
+.test-theme {
+  --main-bg-color: rgb(10, 100, 50);
+  --main-txt-color: rgb(230, 50, 70);
+}
+
+/* .test-theme {
+    --main-bg-color: rgb(10, 0, 50);
+    --main-txt-color: rgb(230, 50, 70);
+} */
+
+body {
+  background-color: var(--main-bg-color);
+  color: var(--main-txt-color);
+}

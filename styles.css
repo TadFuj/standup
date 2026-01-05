@@ -1,0 +1,285 @@
+/*
+-- How to create a new theme --
+Step 1:
+Copy and paste all the css vars in ":root" under a new class definition
+example: .yourname-theme {...}
+
+Step 2:
+Add another <option> to the <select> element in index.html located inside the "start-header" div.
+Make sure the "value" exactly matches the class name in your css theme.
+example: if your css theme is .yourname-theme then use <option value="yourname-theme">Your Name</option>
+The inner text is what shows in the UI so make sure it's capitalized :) 
+
+IF YOU ARE THE CURRENT KANBAN WIZARD / SCRUM MASTER: make sure your newly added option is set as "selected"
+and make sure no other options are marked as selected. This will always default to your theme.
+
+Step 3: 
+Play with the colors! Have fun making changes to see what it does.
+You may notice there's a mix of hex colors, rgb, rgba. 
+All are compatible so it's your preference.
+
+If you want to reuse a color you already defined you can just reference the var.
+Example: 
+Say I want --accent-color to match --main-text-color so I can set it like this:
+--accent-color: --main-text-color;
+
+Step 4: 
+Create a pull request to get your new theme merged to develop!
+It will auto-deploy to prod once merged.
+*/
+
+:root {
+  --main-text-color: #ff5a5a;
+  --main-text-shadow: #ff0000;
+  --background-color-rgba: rgba(10, 10, 36, 1);
+  --textarea-placeholder: #805a5a;
+  --textarea-placeholder-shadow: #705a5a;
+  --main-card-background-solid: #0a0a1f;
+  --main-text-size: 20px;
+  --accent-color: #25ffff;
+  --button-hover-bg-color: #ff3030;
+  --button-hover-shadow-color: #ff6060;
+  --button-hover-text-color: --main-text-color;
+  --button-text-color: --main-text-color;
+  --button-text-shadow-color: var(--main-text-shadow);
+  --canvas-border-color: #ff5a5a;
+  --canvas-border-shadow-color: #ff0000;
+  --button-border-color: #ff5a5a;
+  --button-border-shadow-color: #ff0000;
+  --hero-text-color: rgb(50, 255, 255);
+  --hero-tex-shadow-color: rgba(10, 155, 155, 1);
+  --color-of-shame: #ff5a5a;
+  --color-of-shame-shadow: #ff0000;
+}
+
+.matrix-theme {
+  --main-text-color: #00ff41;
+  --main-text-shadow: #00ff41;
+  --background-color-rgba: rgb(0, 0, 0);
+  --textarea-placeholder: #007711; /* main text */
+  --textarea-placeholder-shadow: #007711;
+  --main-card-background-solid: #000000;
+  --main-text-size: 20px;
+  --accent-color: #00ff41;
+  --button-hover-bg-color: linear-gradient(
+    in hsl,
+    #008f11 15%,
+    #008f11,
+    #008f11,
+    #008f11
+  );
+  --button-hover-shadow-color: #008f11;
+  --button-hover-text-color: #00ff41;
+  --button-text-color: #00ff41;
+  --button-text-shadow-color: #00ff41;
+  --button-border-color: #00ff41;
+  --button-border-shadow-color: #00ff41;
+  --canvas-border-color: #00ff41;
+  --canvas-border-shadow-color: linear-gradient(#00ff41, #00ff41);
+  --hero-text-color: #00ff41;
+  --hero-tex-shadow-color: #00ff41;
+  --color-of-shame: #00ff41;
+  --color-of-shame-shadow: #00ff41;
+}
+
+#main-text {
+  display: none;
+  color: var(--main-text-color);
+  background-color: var(--main-card-background-solid);
+}
+
+#canvas-border {
+  display: none;
+  color: var(--canvas-border-color);
+  background-color: var(--canvas-border-shadow-color);
+}
+
+#hero-text {
+  display: none;
+  color: var(--hero-text-color);
+  background-color: var(--hero-tex-shadow-color);
+}
+
+#color-of-shame {
+  display: none;
+  color: var(--color-of-shame);
+  background-color: var(--color-of-shame-shadow);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background-color-rgba);
+  color: var(--main-text-color);
+  text-shadow: 0px 0px 8px var(--main-text-shadow);
+  font-family: Courier New;
+  font-weight: bold;
+  font-size: var(--main-text-size);
+}
+
+#start-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+select {
+  font-size: var(--main-text-size);
+  color: var(--main-text-color);
+  background: none;
+  border: none;
+  text-shadow: var(--main-text-shadow);
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+select option {
+  background-color: var(--main-card-background-solid);
+}
+
+#cw {
+  position: fixed;
+  z-index: -1;
+}
+
+#parking-lot {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  /* padding-inline: 40px; */
+}
+
+label,
+textarea {
+  font-size: var(--main-text-size);
+  letter-spacing: 1px;
+}
+
+textarea {
+  padding: 10px;
+  display: block;
+  max-width: 100%;
+  line-height: 1.5;
+  border-radius: 3px;
+  border: 2px solid var(--accent-color);
+  box-shadow: 0px 0px 16px var(--accent-color);
+  background-color: var(--main-card-background-solid);
+  /* background-color: rgba(10, 10, 24, 0); */
+  color: var(--main-text-color);
+  text-shadow: 0px 0px 8px var(--main-text-shadow);
+}
+
+textarea::placeholder {
+  color: var(--textarea-placeholder);
+  text-shadow: var(--textarea-placeholder-shadow);
+}
+
+button {
+  background-color: transparent;
+  border-style: solid;
+  border-width: 2px;
+  border-color: var(--button-border-color);
+  padding: 5px 12px;
+  font-family: Courier New;
+  font-weight: bold;
+  color: var(--button-text-color);
+  text-shadow: 0px 0px 6px var(--button-text-shadow-color);
+  font-size: 1.2rem;
+  background-color: var(--main-card-background-solid);
+  background-image: var(--main-card-background-solid);
+  box-shadow: 0px 0px 16px var(--button-border-shadow-color);
+  border-radius: 3px;
+
+  transition: background 250ms ease-in-out, transform 150ms ease;
+}
+
+button:hover {
+  background-color: var(--button-hover-bg-color);
+  background-image: var(--button-hover-bg-color);
+  box-shadow: 0px 0px 20px var(--button-hover-shadow-color);
+  color: var(--button-hover-text-color);
+}
+
+#btn-start {
+  margin-top: 25px;
+}
+
+label {
+  display: block;
+  margin-bottom: 11px;
+  margin-top: 20px;
+}
+
+#gameplay-screen {
+  display: none;
+}
+
+#main-canvas {
+  display: block;
+  box-shadow: 0px 0px 20px var(--canvas-border-shadow-color);
+}
+
+#game-controls {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  max-width: 900px;
+}
+
+#game-control-parent {
+  display: flex;
+  justify-content: center;
+}
+
+#game-hints {
+  z-index: 2;
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  max-width: 900px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+#hint-button {
+  max-width: 240px;
+}
+
+#hint-content {
+  display: none;
+}
+
+.box-text {
+  padding: 20px;
+  background-color: var(--background-color-rgba);
+  border: 2px solid var(--accent-color);
+  box-shadow: 0px 0px 16px var(--accent-color);
+}
+
+.box-text h2,
+h3 {
+  margin: 0;
+}
+
+.game-content {
+  z-index: 1;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+#matrix-background {
+  position: absolute;
+  z-index: 0;
+  top: 0px;
+  left: 0px;
+  display: none;
+}

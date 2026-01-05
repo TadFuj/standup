@@ -1,0 +1,39 @@
+<html>
+
+<head>
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <link rel="stylesheet" type="text/css" href="test.css">
+  <link rel="icon" type="image/x-icon" href="/aaglogoicon.ico">
+</head>
+
+<body id="main-body">
+  <main>
+    <p id="test-me">This is a test file, use it as a sandbox</p>
+    <script>
+      let color = window.getComputedStyle(document.getElementById("test-me"), null).getPropertyValue("color");
+      console.log(color);
+      function changeThing() {
+        console.log("pressed");
+        document.getElementById("main-body").classList.add("test-theme");
+      }
+      function selectedItem() {
+        document.getElementById("main-body").className = "";
+        document.getElementById("main-body").classList.add(document.getElementById("selection").value)
+        console.log(document.getElementById("selection").value);
+
+      }
+    </script>
+    <button id="change" onclick="changeThing()">change theme</button>
+    <div>
+      <p>hello?</p>
+    </div>
+    <select id="selection" onchange="selectedItem()">
+      <option value="" selected>Will</option>
+      <option value="cameron">Cameron</option>
+      <option value="test-theme">Test Theme</option>
+    </select>
+  </main>
+</body>
+
+</html>
