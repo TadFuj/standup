@@ -29,25 +29,25 @@ It will auto-deploy to prod once merged.
 */
 
 :root {
-  --main-text-color: #ff5a5a;
-  --main-text-shadow: #ff0000;
-  --background-color-rgba: rgba(10, 10, 36, 1);
-  --textarea-placeholder: #805a5a;
-  --textarea-placeholder-shadow: #705a5a;
-  --main-card-background-solid: #0a0a1f;
+  --main-text-color: var(--text-strong);
+  --main-text-shadow: none;
+  --background-color-rgba: var(--fill-body);
+  --textarea-placeholder: #6a717c;
+  --textarea-placeholder-shadow: none;
+  --main-card-background-solid: var(--fill-white);
   --main-text-size: 20px;
-  --accent-color: #25ffff;
-  --button-hover-bg-color: #ff3030;
-  --button-hover-shadow-color: #ff6060;
-  --button-hover-text-color: --main-text-color;
-  --button-text-color: --main-text-color;
+  --accent-color: none;
+  --button-hover-bg-color: none;
+  --button-hover-shadow-color: none;
+  --button-hover-text-color: var(--main-text-color);
+  --button-text-color: var(--main-text-color);
   --button-text-shadow-color: var(--main-text-shadow);
-  --canvas-border-color: #ff5a5a;
-  --canvas-border-shadow-color: #ff0000;
-  --button-border-color: #ff5a5a;
-  --button-border-shadow-color: #ff0000;
-  --hero-text-color: rgb(50, 255, 255);
-  --hero-tex-shadow-color: rgba(10, 155, 155, 1);
+  --canvas-border-color: var(--border-ui-default);
+  --canvas-border-shadow-color: none;
+  --button-border-color: var(--border-ui-default);
+  --button-border-shadow-color: none;
+  --hero-text-color: var(--text-ui-default);
+  --hero-tex-shadow-color: none;
   --color-of-shame: #ff5a5a;
   --color-of-shame-shadow: #ff0000;
 }
@@ -128,7 +128,7 @@ body {
 }
 
 select {
-  font-size: var(--main-text-size);
+  font: var(--body-md-normal);
   color: var(--main-text-color);
   background: none;
   border: none;
@@ -154,21 +154,20 @@ select option {
 
 label,
 textarea {
-  font-size: var(--main-text-size);
-  letter-spacing: 1px;
+  font: var(--body-md-normal);
 }
 
 textarea {
-  padding: 10px;
-  display: block;
-  max-width: 100%;
-  line-height: 1.5;
+  /* background-color: rgba(10, 10, 24, 0); */
+  background-color: var(--main-card-background-solid);
   border-radius: 3px;
   border: 2px solid var(--accent-color);
   box-shadow: 0px 0px 16px var(--accent-color);
-  background-color: var(--main-card-background-solid);
-  /* background-color: rgba(10, 10, 24, 0); */
   color: var(--main-text-color);
+  display: block;
+  line-height: 1.5;
+  max-width: 100%;
+  padding: 10px;
   text-shadow: 0px 0px 8px var(--main-text-shadow);
 }
 

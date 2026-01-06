@@ -131,11 +131,15 @@ function animate() {
 }
 
 function selectTheme() {
-  document.getElementById('main-body').className = '';
-  document
-    .getElementById('main-body')
-    .classList.add(document.getElementById('theme-select').value);
-  props.initTheme();
+  const mainBody = document.getElementById('main-body');
+  if (mainBody) {
+    mainBody.className = '';
+    const theme = document.getElementById('theme-select')?.value;
+    if (theme) {
+      mainBody.classList.add(theme);
+      props.initTheme();
+    }
+  }
 }
 
 function showHideDescription() {

@@ -1,29 +1,29 @@
 class Properties {
   // text decoration
-  mainTextColor = 'rgb(255, 90, 90)';
-  mainTextShadowColor = 'rgb(255, 0 ,0)';
+  mainTextColor = '#2c67b5';
+  mainTextShadowColor = 'none';
   mainTextBlur = 'blur(8px)';
   heroTextColor = 'rgb(50,255,255)';
-  heroShadowColor = 'rgba(10, 155, 155, 1)';
+  heroShadowColor = 'none';
   heroTextBlur = 'blur(8px)';
   sidekickTextColor = 'rgb(200, 60, 60';
-  sidekickShadowColor = 'rgb(150, 10, 10)';
+  sidekickShadowColor = 'none';
   sidekickTextBlur = 'blur(8px)';
-  accent = 'rgb(50,255,255)';
-  playerShadowColor = 'rgb(50, 0, 130)';
+  accent = 'none';
+  playerShadowColor = 'none';
   colorOfShame = 'rgb(255, 90, 90)';
-  colorOfShameShadow = 'rgb(255, 0 ,0)';
+  colorOfShameShadow = 'none';
   canvasBorderColor = 'rgb(255, 90, 90)';
 
   // world
   globalBackgroundColor = 'rgba(0, 0, 24, 0.2)';
 
   // text props
-  textMainFont = 'Consolas';
+  textMainFont = 'AS Circular';
   textHeaderSize = 40;
-  textPlayer = '30px Courier New';
-  textCurrentPlayer = '50px Courier New';
-  textNextPlayer = '25px Courier New';
+  textPlayer = '30px AS Circular';
+  textCurrentPlayer = '50px AS Circular';
+  textNextPlayer = '25px AS Circular';
 
   // animation
   playerSpeedModifier = 0.15;
