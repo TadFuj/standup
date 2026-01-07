@@ -1,32 +1,3 @@
-/*
--- How to create a new theme --
-Step 1:
-Copy and paste all the css vars in ":root" under a new class definition
-example: .yourname-theme {...}
-Step 2:
-Add another <option> to the <select> element in index.html located inside the "start-header" div.
-Make sure the "value" exactly matches the class name in your css theme.
-example: if your css theme is .yourname-theme then use <option value="yourname-theme">Your Name</option>
-The inner text is what shows in the UI so make sure it's capitalized :) 
-
-IF YOU ARE THE CURRENT KANBAN WIZARD / SCRUM MASTER: make sure your newly added option is set as "selected"
-and make sure no other options are marked as selected. This will always default to your theme.
-
-Step 3: 
-Play with the colors! Have fun making changes to see what it does.
-You may notice there's a mix of hex colors, rgb, rgba. 
-All are compatible so it's your preference.
-
-If you want to reuse a color you already defined you can just reference the var.
-Example: 
-Say I want --accent-color to match --main-text-color so I can set it like this:
---accent-color: --main-text-color;
-
-Step 4: 
-Create a pull request to get your new theme merged to develop!
-It will auto-deploy to prod once merged.
-*/
-
 :root {
   --accent-color: var(--border-ui-default);
   --background-color-rgba: var(--fill-body);
@@ -109,9 +80,12 @@ It will auto-deploy to prod once merged.
   --main-text-color: var(--accent-color);
   --main-text-shadow: var(--accent-color);
   --main-text-size: 20px;
+  --textarea-border-color: var(--accent-color);
+  --textarea-border-radius: var(--element-border-radius);
+  --textarea-border-width: var(--element-border-width);
   --textarea-box-shadow: 0 0 16px var(--accent-color);
   --textarea-placeholder-shadow: #007711;
-  --textarea-placeholder: #007711; /* main text */
+  --textarea-placeholder: #007711;
 }
 #main-text {
   background-color: var(--main-card-background-solid);
@@ -146,6 +120,7 @@ body {
   text-shadow: 0 0 8px var(--main-text-shadow);
 
   * {
+    /* font-family: var(--font-family1) !important; */
     letter-spacing: var(--letter-spacing);
 
     &:not(button, button span) {
@@ -340,8 +315,10 @@ label {
   display: none;
 }
 #main-canvas {
+  border: var(--textarea-border-width) solid var(--textarea-border-color);
+  border-radius: var(--textarea-border-radius);
   display: block;
-  box-shadow: 0 0 20px var(--canvas-border-shadow-color);
+  box-shadow: var(--textarea-box-shadow);
   width: 100%;
 }
 .game-controls {
@@ -350,10 +327,21 @@ label {
   .game-controls-flex {
     align-items: center;
     display: flex;
+    flex-flow: row wrap;
     gap: 8px;
-    justify-content: center;
+    justify-content: space-between;
     max-width: var(--container-max-width);
     width: 100%;
+
+    .btn-null {
+      visibility: hidden;
+    }
+
+    .game-controls-flex-col1 {
+      display: flex;
+      flex-flow: row wrap;
+      gap: 8px;
+    }
   }
 }
 #game-hints {
