@@ -33,9 +33,6 @@ Use this web utility to choose team members randomly for providing updates durin
   - Places the current player on deck at the bottom of the play screen. (Useful for people running late)
   - This does not change the order of final bosses unless they are already in the play zone.
 
-### Credit
-Many mahalos to [Mr. Will Jenkins](https://github.com/WillJenkins) for his initial creation of this app.
-
 ## Local Server (NGINX)
 
 The app can be served locally via NGINX on Windows.
@@ -78,3 +75,6 @@ If your execution policy blocks scripts, run:
 ```powershell
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 ```
+
+### Credit
+Many mahalos to [Mr. Will Jenkins](https://github.com/WillJenkins) for his initial creation of this app.
