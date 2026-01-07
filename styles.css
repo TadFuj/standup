@@ -3,7 +3,6 @@
 Step 1:
 Copy and paste all the css vars in ":root" under a new class definition
 example: .yourname-theme {...}
-
 Step 2:
 Add another <option> to the <select> element in index.html located inside the "start-header" div.
 Make sure the "value" exactly matches the class name in your css theme.
@@ -29,256 +28,404 @@ It will auto-deploy to prod once merged.
 */
 
 :root {
-  --main-text-color: var(--text-strong);
-  --main-text-shadow: none;
+  --accent-color: var(--border-ui-default);
   --background-color-rgba: var(--fill-body);
-  --textarea-placeholder: #6a717c;
-  --textarea-placeholder-shadow: none;
-  --main-card-background-solid: var(--fill-white);
-  --main-text-size: 20px;
-  --accent-color: none;
-  --button-hover-bg-color: none;
+  --base-font-color: var(--text-strong);
+  --button-background-color: var(--fill-primary);
+  --button-background-image: none;
+  --button-border-color: var(--border-ui-default);
+  --button-border-radius: 4px;
+  --button-border-shadow-color: none;
+  --button-border-width: 1px;
+  --button-font: var(--body-sm-normal);
+  --button-hover-bg-color: var(--fill-darker);
   --button-hover-shadow-color: none;
-  --button-hover-text-color: var(--main-text-color);
-  --button-text-color: var(--main-text-color);
+  --button-hover-text-color: var(--text-white);
+  --button-text-color: var(--text-white);
   --button-text-shadow-color: var(--main-text-shadow);
   --canvas-border-color: var(--border-ui-default);
   --canvas-border-shadow-color: none;
-  --button-border-color: var(--border-ui-default);
-  --button-border-shadow-color: none;
-  --hero-text-color: var(--text-ui-default);
-  --hero-tex-shadow-color: none;
-  --color-of-shame: #ff5a5a;
   --color-of-shame-shadow: #ff0000;
-}
-
-.matrix-theme {
-  --main-text-color: #00ff41;
-  --main-text-shadow: #00ff41;
-  --background-color-rgba: rgb(0, 0, 0);
-  --textarea-placeholder: #007711; /* main text */
-  --textarea-placeholder-shadow: #007711;
-  --main-card-background-solid: #000000;
+  --color-of-shame: #ff5a5a;
+  --element-border-color: var(--border-ui-default);
+  --element-border-width: 1px;
+  --element-border-radius: 6px;
+  --element-font: var(--body-sm-normal);
+  --fieldset-border-radius: 8px;
+  --fieldset-border-color: var(--border-neutral-weak);
+  --header-bg-color: var(--fill-white);
+  --hero-tex-shadow-color: none;
+  --hero-text-color: var(--text-ui-default);
+  --letter-spacing: -0.5px;
+  --main-card-background-solid: var(--fill-white);
+  --main-text-color: var(--text-weak);
+  --main-text-shadow: none;
   --main-text-size: 20px;
+  --container-max-width: 1024px;
+  --textarea-border-color: var(--element-border-color);
+  --textarea-border-radius: var(--element-border-radius);
+  --textarea-border-width: var(--element-border-width);
+  --textarea-box-shadow: none;
+  --textarea-font: var(--body-sm-normal);
+  --textarea-placeholder-shadow: none;
+  --textarea-placeholder: var(--text-x-weak);
+
+  &:has(.matrix-theme) {
+    --font-family1: 'Courier New', 'Lucida Console', monospace;
+  }
+}
+.matrix-theme {
   --accent-color: #00ff41;
+  --accent-shadow: #008f11;
+  --background-color-rgba: rgb(0, 0, 0);
+  --base-font-color: var(--accent-color);
+  --button-background-color: #000;
+  --button-border-color: var(--accent-color);
+  --button-border-shadow-color: var(--accent-color);
   --button-hover-bg-color: linear-gradient(
     in hsl,
-    #008f11 15%,
-    #008f11,
-    #008f11,
-    #008f11
+    var(--accent-shadow) 15%,
+    var(--accent-shadow),
+    var(--accent-shadow),
+    var(--accent-shadow)
   );
-  --button-hover-shadow-color: #008f11;
-  --button-hover-text-color: #00ff41;
-  --button-text-color: #00ff41;
-  --button-text-shadow-color: #00ff41;
-  --button-border-color: #00ff41;
-  --button-border-shadow-color: #00ff41;
-  --canvas-border-color: #00ff41;
-  --canvas-border-shadow-color: linear-gradient(#00ff41, #00ff41);
-  --hero-text-color: #00ff41;
-  --hero-tex-shadow-color: #00ff41;
-  --color-of-shame: #00ff41;
-  --color-of-shame-shadow: #00ff41;
+  --button-hover-shadow-color: var(--accent-shadow);
+  --button-hover-text-color: var(--accent-color);
+  --button-text-color: var(--accent-color);
+  --button-text-shadow-color: var(--accent-color);
+  --canvas-border-color: var(--accent-color);
+  --canvas-border-shadow-color: linear-gradient(
+    var(--accent-color),
+    var(--accent-color)
+  );
+  --color-of-shame-shadow: var(--accent-color);
+  --color-of-shame: var(--accent-color);
+  --fieldset-border-color: var(--accent-color);
+  --header-bg-color: var(--fill-black);
+  --hero-tex-shadow-color: var(--accent-color);
+  --hero-text-color: var(--accent-color);
+  --letter-spacing: 0.5px;
+  --main-card-background-solid: #000000;
+  --main-text-color: var(--accent-color);
+  --main-text-shadow: var(--accent-color);
+  --main-text-size: 20px;
+  --textarea-box-shadow: 0 0 16px var(--accent-color);
+  --textarea-placeholder-shadow: #007711;
+  --textarea-placeholder: #007711; /* main text */
 }
-
 #main-text {
-  display: none;
-  color: var(--main-text-color);
   background-color: var(--main-card-background-solid);
+  color: var(--main-text-color);
+  display: none;
 }
-
 #canvas-border {
-  display: none;
-  color: var(--canvas-border-color);
   background-color: var(--canvas-border-shadow-color);
+  color: var(--canvas-border-color);
+  display: none;
 }
-
 #hero-text {
-  display: none;
-  color: var(--hero-text-color);
   background-color: var(--hero-tex-shadow-color);
-}
-
-#color-of-shame {
+  color: var(--hero-text-color);
   display: none;
-  color: var(--color-of-shame);
-  background-color: var(--color-of-shame-shadow);
 }
-
+#color-of-shame {
+  background-color: var(--color-of-shame-shadow);
+  color: var(--color-of-shame);
+  display: none;
+}
 body {
+  align-items: center;
+  background-color: var(--background-color-rgba) !important;
+  color: var(--main-text-color);
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  justify-content: center;
   margin: 0;
   padding: 0;
-  height: fit-content;
+  text-shadow: 0 0 8px var(--main-text-shadow);
+
+  * {
+    letter-spacing: var(--letter-spacing);
+
+    &:not(button, button span) {
+      color: var(--base-font-color);
+    }
+  }
+}
+header {
+  align-items: center;
+  background-color: var(--header-bg-color);
+  display: flex;
+  justify-content: center;
+  min-height: 75px;
+  padding: 8px 16px;
+  position: sticky;
+  text-align: center;
+  top: 0;
+  width: 100%;
+  z-index: 3;
+
+  .header-flex {
+    align-items: center;
+    display: flex;
+    gap: 16px;
+    justify-content: space-between;
+    max-width: 1024px;
+    width: 100%;
+
+    .as-logo-container {
+      width: 10%;
+
+      .as-logo {
+        min-width: 90px;
+        max-width: 150px;
+        width: 100%;
+      }
+    }
+  }
+
+  h1 {
+    color: var(--main-text-color);
+    font: var(--heading-xl-strong);
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+  }
+
+  .theme-select-container {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 8px;
+  }
+}
+.container {
+  align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  background-color: var(--background-color-rgba);
-  color: var(--main-text-color);
-  text-shadow: 0px 0px 8px var(--main-text-shadow);
-  font-family: Courier New;
-  font-weight: bold;
-  font-size: var(--main-text-size);
-}
+  max-width: 1024px;
+  padding: 16px;
+  width: 100%;
 
+  main {
+    width: 100%;
+  }
+}
 #start-header {
   display: flex;
   justify-content: space-between;
 }
+form {
+  display: flex;
+  flex-flow: column nowrap;
 
+  fieldset {
+    border-color: var(--fieldset-border-color);
+    border-radius: var(--fieldset-border-radius);
+    border-style: revert;
+    border-width: revert;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 0;
+    padding: 8px;
+
+    legend {
+      font: var(--body-xxs-weak);
+    }
+  }
+}
 select {
-  font: var(--body-md-normal);
-  color: var(--main-text-color);
   background: none;
-  border: none;
+  border: var(--button-border-width) solid var(--button-border-color);
+  border-radius: var(--button-border-radius);
+  color: var(--main-text-color);
+  font: var(--element-font);
   text-shadow: var(--main-text-shadow);
-  margin-top: 10px;
-  margin-bottom: 10px;
+  padding: 8px 4px;
+}
+/* Auto-lighten label when placeholder option is selected (no JS needed) */
+#theme-select:has(option[value=""]:checked) {
+  color: var(--textarea-placeholder);
 }
 select option {
   background-color: var(--main-card-background-solid);
 }
-
 #cw {
   position: fixed;
   z-index: -1;
 }
-
 #parking-lot {
   display: flex;
   justify-content: center;
   flex-direction: column;
   /* padding-inline: 40px; */
 }
-
 label,
+legend,
 textarea {
-  font: var(--body-md-normal);
+  color: var(--main-text-color);
 }
-
 textarea {
   /* background-color: rgba(10, 10, 24, 0); */
   background-color: var(--main-card-background-solid);
-  border-radius: 3px;
-  border: 2px solid var(--accent-color);
-  box-shadow: 0px 0px 16px var(--accent-color);
+  border-radius: var(--textarea-border-radius);
+  border: var(--textarea-border-width) solid var(--textarea-border-color);
+  box-shadow: var(--textarea-box-shadow);
   color: var(--main-text-color);
   display: block;
-  line-height: 1.5;
-  max-width: 100%;
-  padding: 10px;
-  text-shadow: 0px 0px 8px var(--main-text-shadow);
+  font: var(--textarea-font);
+  padding: 8px;
+  text-shadow: 0 0 8px var(--main-text-shadow);
+  width: 100%;
 }
-
 textarea::placeholder {
   color: var(--textarea-placeholder);
   text-shadow: var(--textarea-placeholder-shadow);
 }
-
+textarea,
+select {
+  &:focus-visible {
+    outline: var(--accent-color) auto 1px;
+    outline-offset: 2px;
+  }
+}
+.button-container {
+  padding-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+}
 button {
-  background-color: transparent;
-  border-style: solid;
-  border-width: 2px;
-  border-color: var(--button-border-color);
-  padding: 5px 12px;
-  font-family: Courier New;
-  font-weight: bold;
+  background-color: var(--button-background-color);
+  background-image: var(--button-background-image);
+  border-radius: var(--button-border-radius);
+  border: var(--button-border-width) solid var(--button-border-color);
+  box-shadow: 0 0 16px var(--button-border-shadow-color);
+  font: var(--button-font);
   color: var(--button-text-color);
-  text-shadow: 0px 0px 6px var(--button-text-shadow-color);
-  font-size: 1.2rem;
-  background-color: var(--main-card-background-solid);
-  background-image: var(--main-card-background-solid);
-  box-shadow: 0px 0px 16px var(--button-border-shadow-color);
-  border-radius: 3px;
+  min-width: 125px;
+  padding: 8px 16px;
+  text-shadow: 0 0 6px var(--button-text-shadow-color);
+  transition: all 250ms ease-in-out, transform 150ms ease;
 
-  transition: background 250ms ease-in-out, transform 150ms ease;
+  &.secondary {
+    background-color: var(--main-card-background-solid);
+    border-color: var(--accent-color);
+    color: var(--main-text-color);
+    text-shadow: 0 0 8px var(--main-text-shadow);
+    &:hover {
+      background-color: var(--fill-neutral-weak);
+      box-shadow: 0 0 20px var(--button-hover-shadow-color);
+      color: revert;
+    }
+  }
+
+  & > span {
+    display: inline-block;
+    transform: translateY(2px);
+  }
+  &:hover {
+    background-color: var(--button-hover-bg-color);
+    background-image: var(--button-hover-bg-color);
+    box-shadow: 0 0 20px var(--button-hover-shadow-color);
+    color: var(--button-hover-text-color);
+  }
 }
-
-button:hover {
-  background-color: var(--button-hover-bg-color);
-  background-image: var(--button-hover-bg-color);
-  box-shadow: 0px 0px 20px var(--button-hover-shadow-color);
-  color: var(--button-hover-text-color);
-}
-
-#btn-start {
-  margin-top: 25px;
-}
-
 label {
-  display: block;
-  margin-bottom: 11px;
-  margin-top: 20px;
+  display: inline-block;
 }
-
 #gameplay-screen {
   display: none;
 }
-
 #main-canvas {
   display: block;
-  box-shadow: 0px 0px 20px var(--canvas-border-shadow-color);
-}
-
-#game-controls {
+  box-shadow: 0 0 20px var(--canvas-border-shadow-color);
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  max-width: 900px;
 }
+.game-controls {
+  padding: 16px 0;
 
-#game-control-parent {
-  display: flex;
-  justify-content: center;
+  .game-controls-flex {
+    align-items: center;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    max-width: var(--container-max-width);
+    width: 100%;
+  }
 }
-
 #game-hints {
-  z-index: 2;
-  padding: 20px;
-  width: 100%;
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 8px;
   justify-content: space-between;
-  gap: 10px;
-  max-width: 900px;
-  padding-left: 40px;
-  padding-right: 40px;
+  max-width: var(--container-max-width);
+  padding: 20px 40px;
+  position: relative;
+  width: 100%;
+  z-index: 2;
 }
-
 #hint-button {
   max-width: 240px;
 }
-
 #hint-content {
   display: none;
 }
-
 .box-text {
+  border: none;
+  box-shadow: var(--main-text-shadow);
   padding: 20px;
-  background-color: var(--background-color-rgba);
-  border: 2px solid var(--accent-color);
-  box-shadow: 0px 0px 16px var(--accent-color);
 }
-
 .box-text h2,
 h3 {
   margin: 0;
 }
-
 .game-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
   z-index: 1;
-  padding-left: 40px;
-  padding-right: 40px;
 }
-
 #matrix-background {
-  position: absolute;
-  z-index: 0;
-  top: 0px;
-  left: 0px;
   display: none;
+  left: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+
+  #matrix-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+hr {
+  border-style: inset;
+  border-top: 1px solid var(--element-border-color);
+  border-width: 1px;
+  color: gray;
+  display: block;
+  margin-block-end: 0.5em;
+  margin-block-start: 0.5em;
+  margin-inline-end: auto;
+  margin-inline-start: auto;
+  margin: var(--spacing-24) 0;
+  overflow: hidden;
+  unicode-bidi: isolate;
+}
+button.btn-desc {
+  position: absolute;
+  top: 0;
+  right: 0;
 }

@@ -24,19 +24,8 @@ playerForm.addEventListener('submit', (event) => {
   startGame();
 });
 
-selectMenu.addEventListener('change', function () {
-  if (selectMenu.value == 'matrix-theme') {
-    doAnimateMatrix = true;
-    startTheMatrix();
-    animateMatrix(0);
-    matrixBackground.style.display = 'block';
-  } else {
-    matrixBackground.style.display = 'none';
-    doAnimateMatrix = false;
-  }
-});
-
-selectTheme(); // sets the theme based on the currently selected dropdown item in "theme-select"
+initThemeSelection(); // initialize theme from last saved selection
+initTextPersistence(); // load and persist textarea content
 
 function setUpContext() {
   canvas = document.getElementById('main-canvas');
@@ -132,14 +121,64 @@ function animate() {
 
 function selectTheme() {
   const mainBody = document.getElementById('main-body');
-  if (mainBody) {
-    mainBody.className = '';
-    const theme = document.getElementById('theme-select')?.value;
-    if (theme) {
-      mainBody.classList.add(theme);
-      props.initTheme();
+  const htmlEl = document.documentElement;
+  const select = document.getElementById('theme-select');
+  if (!select) return;
+  const theme = select.value;
+
+
+  // Reset html data-theme and body theme classes
+  htmlEl.removeAttribute('data-theme');
+  if (mainBody) mainBody.className = '';
+
+  // Apply light/dark via data-theme for brand.css
+  if (theme === 'light' || theme === 'dark') {
+    htmlEl.setAttribute('data-theme', theme);
+  }
+
+  // Apply app-specific themes via body class
+  if (mainBody && theme && theme !== 'light' && theme !== 'dark') {
+    mainBody.classList.add(theme);
+  }
+
+  // Toggle Matrix background when matrix theme is active
+  if (typeof doAnimateMatrix !== 'undefined') {
+    if (theme === 'matrix-theme') {
+      doAnimateMatrix = true;
+      if (typeof startTheMatrix === 'function') startTheMatrix();
+      if (typeof animateMatrix === 'function') animateMatrix(0);
+      if (matrixBackground) matrixBackground.style.display = 'block';
+    } else {
+      if (matrixBackground) matrixBackground.style.display = 'none';
+      doAnimateMatrix = false;
     }
   }
+
+  // Persist selection
+  try {
+    if (theme) {
+      localStorage.setItem('standup.theme', theme);
+    } else {
+      localStorage.removeItem('standup.theme');
+    }
+  } catch {}
+
+  // Re-init theme derived properties
+  props.initTheme();
+}
+
+function initThemeSelection() {
+  const select = document.getElementById('theme-select');
+  if (!select) return;
+  try {
+    const saved = localStorage.getItem('standup.theme');
+    if (saved) {
+      const hasOption = Array.from(select.options).some((o) => o.value === saved);
+      if (hasOption) select.value = saved;
+    }
+  } catch {}
+  // Apply the selected or default theme
+  selectTheme();
 }
 
 function showHideDescription() {
@@ -151,5 +190,33 @@ function showHideDescription() {
     isShowingHints = true;
     document.getElementById('hint-content').style.display = 'block';
     document.getElementById('hint-button').innerText = 'Hide Description';
+  }
+}
+
+function initTextPersistence() {
+  try {
+    const savedPlayers = localStorage.getItem('standup.playersText');
+    const savedBosses = localStorage.getItem('standup.bossesText');
+    if (playersInputElement && savedPlayers && savedPlayers.length > 0) {
+      playersInputElement.value = savedPlayers;
+    }
+    if (finalBossesInputElement && savedBosses && savedBosses.length > 0) {
+      finalBossesInputElement.value = savedBosses;
+    }
+  } catch {}
+
+  if (playersInputElement) {
+    playersInputElement.addEventListener('input', () => {
+      try {
+        localStorage.setItem('standup.playersText', playersInputElement.value || '');
+      } catch {}
+    });
+  }
+  if (finalBossesInputElement) {
+    finalBossesInputElement.addEventListener('input', () => {
+      try {
+        localStorage.setItem('standup.bossesText', finalBossesInputElement.value || '');
+      } catch {}
+    });
   }
 }
