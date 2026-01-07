@@ -18,14 +18,24 @@ class Game {
   }
 
   setSize() {
-    this.sizeX = innerWidth * 0.8;
-    this.sizeY = innerHeight / 2;
+    const parent = this.mainCanvas.parentElement;
+    const parentWidth = parent ? parent.getBoundingClientRect().width : innerWidth * 0.8;
+    this.sizeX = Math.floor(parentWidth);
+    // Keep height proportional to width for consistent aspect
+    this.sizeY = Math.floor(this.sizeX * 0.5);
     this.setCanvasSize();
   }
 
   setCanvasSize() {
-    this.mainCanvas.height = this.sizeY;
-    this.mainCanvas.width = this.sizeX;
+    const dpr = window.devicePixelRatio || 1;
+    // Set CSS size for layout (logical pixels)
+    this.mainCanvas.style.width = `${this.sizeX}px`;
+    this.mainCanvas.style.height = `${this.sizeY}px`;
+    // Set actual bitmap resolution for crisp rendering
+    this.mainCanvas.width = Math.floor(this.sizeX * dpr);
+    this.mainCanvas.height = Math.floor(this.sizeY * dpr);
+    // Scale drawing operations so coordinates match CSS pixels
+    this.mainContext.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
 
   getCurrentPlayerName() {
@@ -156,10 +166,10 @@ class Game {
     this.mainContext.beginPath();
     this.mainContext.strokeStyle = this.props.canvasBorderColor;
     this.mainContext.lineWidth = 2;
-    this.mainContext.moveTo(2, this.mainCanvas.height * 0.35);
+    this.mainContext.moveTo(2, this.sizeY * 0.35);
     this.mainContext.lineTo(
-      this.mainCanvas.width - 2,
-      this.mainCanvas.height * 0.35
+      this.sizeX - 2,
+      this.sizeY * 0.35
     );
     this.mainContext.filter = 'blur(4px)';
     this.mainContext.stroke();

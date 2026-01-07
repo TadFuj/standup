@@ -27,6 +27,13 @@ class Player {
     this.isNextPlayer = false;
   }
 
+  getCssSize() {
+    const dpr = window.devicePixelRatio || 1;
+    const cssW = this.canvas.clientWidth || Math.floor(this.canvas.width / dpr);
+    const cssH = this.canvas.clientHeight || Math.floor(this.canvas.height / dpr);
+    return { cssW, cssH };
+  }
+
   getName() {
     return this.name;
   }
@@ -37,8 +44,9 @@ class Player {
   }
 
   resetPlayer() {
-    this.x = this.canvas.width / 2;
-    this.y = this.canvas.height - 20; // near bottom
+    const { cssW, cssH } = this.getCssSize();
+    this.x = cssW / 2;
+    this.y = cssH - 20; // near bottom
     this.color = this.props.colorOfShame;
     this.blur = this.props.mainTextBlur;
     this.shadowColor = this.props.colorOfShameShadow;
@@ -86,7 +94,8 @@ class Player {
     context.textAlign = 'center';
     context.fillStyle = this.color;
     context.font = this.font;
-    context.fillText(this.name, this.canvas.width / 2, 40);
+    const { cssW } = this.getCssSize();
+    context.fillText(this.name, cssW / 2, 40);
   }
 
   drawText() {
@@ -103,10 +112,11 @@ class Player {
   }
 
   calculatePosition() {
-    if (this.x > this.canvas.width || this.x < 0) {
+    const { cssW, cssH } = this.getCssSize();
+    if (this.x > cssW || this.x < 0) {
       this.speedX *= -1;
     }
-    if (this.y > this.canvas.height || this.y < this.canvas.height * 0.4) {
+    if (this.y > cssH || this.y < cssH * 0.4) {
       this.speedY *= -1;
     }
     this.x += this.speedX;
@@ -117,14 +127,10 @@ class Player {
   }
 
   bringMeHome() {
-    if (
-      this.x > this.canvas.width + 2 ||
-      this.x < -2 ||
-      this.y > this.canvas.height + 2 ||
-      this.y < this.canvas.height * 0.3999
-    ) {
-      this.x = this.canvas.width / 2;
-      this.y = this.canvas.height / 2;
+    const { cssW, cssH } = this.getCssSize();
+    if (this.x > cssW + 2 || this.x < -2 || this.y > cssH + 2 || this.y < cssH * 0.3999) {
+      this.x = cssW / 2;
+      this.y = cssH / 2;
     }
   }
 
@@ -134,8 +140,8 @@ class Player {
   }
 
   setRandomPosition() {
-    this.x = this.canvas.width * Math.random();
-    this.y =
-      this.canvas.height * 0.6 * Math.random() + this.canvas.height * 0.4;
+    const { cssW, cssH } = this.getCssSize();
+    this.x = cssW * Math.random();
+    this.y = cssH * 0.6 * Math.random() + cssH * 0.4;
   }
 }
