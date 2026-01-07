@@ -1,6 +1,3 @@
-// const canvas = document.getElementById("main-canvas");
-// const context = canvas.getContext("2d");
-
 class Game {
   currentPlayer;
   nextPlayer;
@@ -19,22 +16,20 @@ class Game {
 
   setSize() {
     const parent = this.mainCanvas.parentElement;
-    const parentWidth = parent ? parent.getBoundingClientRect().width : innerWidth * 0.8;
+    const parentWidth = parent
+      ? parent.getBoundingClientRect().width
+      : innerWidth * 0.8;
     this.sizeX = Math.floor(parentWidth);
-    // Keep height proportional to width for consistent aspect
     this.sizeY = Math.floor(this.sizeX * 0.5);
     this.setCanvasSize();
   }
 
   setCanvasSize() {
     const dpr = window.devicePixelRatio || 1;
-    // Set CSS size for layout (logical pixels)
     this.mainCanvas.style.width = `${this.sizeX}px`;
     this.mainCanvas.style.height = `${this.sizeY}px`;
-    // Set actual bitmap resolution for crisp rendering
     this.mainCanvas.width = Math.floor(this.sizeX * dpr);
     this.mainCanvas.height = Math.floor(this.sizeY * dpr);
-    // Scale drawing operations so coordinates match CSS pixels
     this.mainContext.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
 
@@ -45,7 +40,6 @@ class Game {
   beginGame() {
     this.initPlayers();
     this.selectStartingPlayers();
-    //this.animate();
   }
 
   initPlayers() {
@@ -154,26 +148,20 @@ class Game {
     }
   }
 
+  /**
+   * Draw border around the canvas
+   * @deprecated The border is now handled by CSS
+   */
   drawBorder() {
-    this.mainContext.beginPath();
-    this.mainContext.strokeStyle = this.props.canvasBorderColor;
-    this.mainContext.lineWidth = 2;
-    this.mainContext.rect(2, 2, this.sizeX - 4, this.sizeY - 4);
-    this.mainContext.stroke();
+    return;
   }
 
   drawLineOfDefense() {
     this.mainContext.beginPath();
     this.mainContext.strokeStyle = this.props.canvasBorderColor;
-    this.mainContext.lineWidth = 2;
+    this.mainContext.lineWidth = 1;
     this.mainContext.moveTo(2, this.sizeY * 0.35);
-    this.mainContext.lineTo(
-      this.sizeX - 2,
-      this.sizeY * 0.35
-    );
-    this.mainContext.filter = 'blur(4px)';
-    this.mainContext.stroke();
-    this.mainContext.filter = 'blur(0px)';
+    this.mainContext.lineTo(this.sizeX - 2, this.sizeY * 0.35);
     this.mainContext.stroke();
   }
 }

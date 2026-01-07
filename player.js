@@ -19,8 +19,6 @@ class Player {
     this.y = y;
     this.setRandomPosition();
     this.color = generateColor();
-    this.shadowColor = this.color;
-    this.blur = this.props.mainTextBlur;
     this.font = this.props.textPlayer;
     this.setRandomSpeeds();
     this.isCurrentPlayer = false;
@@ -30,7 +28,8 @@ class Player {
   getCssSize() {
     const dpr = window.devicePixelRatio || 1;
     const cssW = this.canvas.clientWidth || Math.floor(this.canvas.width / dpr);
-    const cssH = this.canvas.clientHeight || Math.floor(this.canvas.height / dpr);
+    const cssH =
+      this.canvas.clientHeight || Math.floor(this.canvas.height / dpr);
     return { cssW, cssH };
   }
 
@@ -48,8 +47,6 @@ class Player {
     this.x = cssW / 2;
     this.y = cssH - 20; // near bottom
     this.color = this.props.colorOfShame;
-    this.blur = this.props.mainTextBlur;
-    this.shadowColor = this.props.colorOfShameShadow;
     this.font = this.props.textPlayer;
     this.setRandomSpeeds();
     this.isCurrentPlayer = false;
@@ -69,17 +66,12 @@ class Player {
   setIsCurrentPlayer() {
     this.font = this.props.textCurrentPlayer;
     this.color = this.props.heroTextColor;
-    this.shadowColor = this.props.heroShadowColor;
-    this.blur = this.props.heroTextBlur;
     this.isCurrentPlayer = true;
     this.isNextPlayer = false;
   }
 
   setIsNextPlayer() {
     this.font = this.props.textNextPlayer;
-    //this.color = this.props.sidekickTextColor;
-    //this.shadowColor = this.props.sidekickShadowColor;
-    this.blur = this.props.sidekickTextBlur;
     this.isCurrentPlayer = false;
     this.isNextPlayer = true;
   }
@@ -100,15 +92,10 @@ class Player {
 
   drawText() {
     context.beginPath();
-    context.textAlign = 'center';
-    context.strokeStyle = this.shadowColor;
     context.font = this.font;
-    context.filter = this.blur;
-    context.strokeText(this.name, this.x, this.y);
-    context.beginPath();
-    context.strokeStyle = this.color;
-    context.filter = 'blur(0px)';
-    context.strokeText(this.name, this.x, this.y);
+    context.textAlign = 'center';
+    context.fillStyle = this.color;
+    context.fillText(this.name, this.x, this.y);
   }
 
   calculatePosition() {
@@ -128,7 +115,12 @@ class Player {
 
   bringMeHome() {
     const { cssW, cssH } = this.getCssSize();
-    if (this.x > cssW + 2 || this.x < -2 || this.y > cssH + 2 || this.y < cssH * 0.3999) {
+    if (
+      this.x > cssW + 2 ||
+      this.x < -2 ||
+      this.y > cssH + 2 ||
+      this.y < cssH * 0.3999
+    ) {
       this.x = cssW / 2;
       this.y = cssH / 2;
     }

@@ -6,7 +6,6 @@ class Players {
 
   loadPlayersFromText(playerText, finalBossesText) {
     this.clearAllPlayers();
-    // console.log('loading player text: ' + playerText);
     if (playerText) {
       this.players = playerText.split('\n').filter(function (e) {
         return e != '';
@@ -14,7 +13,6 @@ class Players {
       this.finalBosses = finalBossesText.split('\n').filter(function (e) {
         return e != '';
       });
-      //this.randomizePlayers();
     }
   }
 
@@ -40,7 +38,6 @@ class Players {
   }
 
   hasPlayers() {
-    console.log('has players: ' + this.players);
     return this.players.length > 0;
   }
 
