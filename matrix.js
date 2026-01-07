@@ -5,8 +5,8 @@ startTheMatrix();
 function startTheMatrix() {
   matrixCanvas = document.getElementById('matrix-canvas');
   ctx = matrixCanvas.getContext('2d');
-  matrixCanvas.width = window.innerWidth;
-  matrixCanvas.height = window.innerHeight;
+  matrixCanvas.width = document.body.scrollWidth;
+  matrixCanvas.height = document.body.scrollWidth;
 }
 
 class Symbol {
@@ -91,8 +91,8 @@ function animateMatrix(timeStamp) {
 }
 
 function resizeMatrix() {
-  matrixCanvas.width = window.innerWidth;
-  matrixCanvas.height = window.innerHeight;
+  matrixCanvas.width = document.body.scrollWidth;
+  matrixCanvas.height = document.body.scrollHeight;
   if (symbolStreak) {
     symbolStreak.reset(matrixCanvas.width, matrixCanvas.height);
   }

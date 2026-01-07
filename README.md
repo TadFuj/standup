@@ -1,4 +1,4 @@
-# Standup Helper
+# Standup Assistant
 Use this web utility to choose team members randomly for providing updates during a daily standup, roundtable discussion, icebreaker, or whatever else is applicable.
 
 ### Players

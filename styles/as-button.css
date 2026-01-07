@@ -1,0 +1,367 @@
+.as-button {
+  --as-button-border-radius: 6px;
+  --as-button-border-width: 1px;
+  --as-button-color-bg: var(--fill-primary, #003761);
+  --as-button-color-br: var(--fill-primary, #003761);
+  --as-button-color-fg: var(--text-white, #ffffff);
+  --as-button-font: var(--body-md-normal, 400 1rem / 1.3 var(--font-family1));
+  --as-button-height: unset;
+  --as-button-hover-overlay-state-0: var(--fill-hover-state-0);
+  --as-button-hover-overlay-state-1: var(--fill-hover-state-1);
+  --as-button-hover-overlay: var(--fill-hover-opacity);
+  --as-button-hover-transition: opacity 0.3s ease-in-out;
+  --as-button-max-height: unset;
+  --as-button-max-width: unset;
+  --as-button-min-height: unset;
+  --as-button-min-width: unset;
+  --as-button-padding: 8px 16px;
+  --as-button-pressed-overlay: var(--as-button-hover-overlay-state-1);
+  --as-button-width: inherit;
+  align-items: center;
+  background-color: var(--as-button-color-bg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0));
+  border-radius: var(--as-button-border-radius);
+  border: var(--as-button-border-width) solid var(--as-button-color-br);
+  color: var(--as-button-color-fg);
+  cursor: pointer;
+  display: inline-flex;
+  font: var(--as-button-font);
+  gap: 4px;
+  height: var(--as-button-height);
+  justify-content: center;
+  max-height: var(--as-button-max-height);
+  max-width: var(--as-button-max-width);
+  min-height: var(--as-button-min-height);
+  min-width: var(--as-button-min-width);
+  overflow: hidden;
+  padding: var(--as-button-padding);
+  position: relative;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  width: var(--as-button-width);
+  &::after {
+    background: var(--as-button-hover-overlay);
+    content: '';
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    transition: var(--as-button-hover-transition);
+    z-index: 1;
+  }
+  &:hover::after {
+    opacity: 1;
+  }
+  &:active::after {
+    opacity: 1;
+    background: var(--as-button-pressed-overlay);
+  }
+  &:active {
+    transform: translate(1px, 1px);
+  }
+  & .as-button__loading {
+    align-items: center;
+    display: flex;
+    gap: 0.35em;
+    inset: 0;
+    justify-content: center;
+    pointer-events: none;
+    position: absolute;
+    z-index: 1;
+  }
+  & .as-button__loading .dot {
+    animation: as-button-ellipsis 1.1s ease-in-out infinite;
+    background-color: var(--as-button-color-fg);
+    border-radius: 50%;
+    height: 0.35em;
+    opacity: 0.25;
+    width: 0.35em;
+    will-change: transform, opacity;
+  }
+  & .as-button__loading .dot:nth-child(2) {
+    animation-delay: 0.15s;
+  }
+  & .as-button__loading .dot:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  & .as-button__count {
+    text-align: left;
+  }
+  & .as-button__label {
+    white-space: nowrap;
+  }
+  & .as-button__ripple {
+    animation: as-button-ripple 450ms ease-out;
+    background-color: currentColor;
+    border-radius: 50%;
+    opacity: 0.25;
+    pointer-events: none;
+    position: absolute;
+    transform: scale(0);
+    will-change: transform, opacity;
+    z-index: 1;
+  }
+  &--variant-primary {
+    --as-button-hover-overlay: var(--as-button-hover-overlay-state-1);
+  }
+  &--variant-secondary {
+    --as-button-hover-overlay: var(--as-button-hover-overlay-state-0);
+  }
+  &--variant-tertiary {
+    --as-button-hover-overlay: var(--as-button-hover-overlay-state-0);
+  }
+  &--size-xxs {
+    --as-button-font: var(--body-xxxs-normal);
+    --as-button-padding: 4px 8px;
+  }
+  &--size-xs {
+    --as-button-font: var(--body-xxs-normal);
+    --as-button-padding: 5px 10px;
+  }
+  &--size-sm {
+    --as-button-font: var(--body-xs-normal);
+    --as-button-padding: 6px 12px;
+  }
+  &--size-md {
+    --as-button-font: var(--body-sm-normal);
+    --as-button-padding: 8px 16px;
+  }
+  &--size-lg {
+    --as-button-font: var(--body-md-normal);
+    --as-button-padding: 10px 20px;
+  }
+  &--size-xl {
+    --as-button-font: var(--body-lg-normal);
+    --as-button-padding: 12px 24px;
+  }
+  &--size-xxl {
+    --as-button-font: var(--body-xl-normal);
+    --as-button-padding: 14px 28px;
+  }
+  &:disabled,
+  &[disabled] {
+    background-image: linear-gradient(var(--fill-hover-state-0));
+    border: var(--as-button-border-width) solid transparent;
+    cursor: not-allowed;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  &--color-primary {
+    &.as-button--variant-primary {
+      --as-button-color-bg: var(--as-button-primary-background);
+      --as-button-color-br: var(--as-button-primary-border);
+      --as-button-color-fg: var(--as-button-primary-text);
+    }
+    &.as-button--variant-secondary {
+      --as-button-color-bg: transparent;
+      --as-button-color-br: var(--as-button-secondary-border);
+      --as-button-color-fg: var(--as-button-secondary-text);
+    }
+    &.as-button--variant-tertiary {
+      --as-button-color-bg: var(--as-button-tertiary-background);
+      --as-button-color-br: var(--as-button-tertiary-background);
+      --as-button-color-fg: var(--as-button-tertiary-text);
+    }
+  }
+  &--color-secondary {
+    &.as-button--variant-primary {
+      --as-button-color-bg: var(--as-button-ui-color-1);
+      --as-button-color-br: var(--as-button-ui-color-1);
+      --as-button-color-fg: var(--as-button-ui-color-2);
+    }
+    &.as-button--variant-secondary {
+      --as-button-color-bg: transparent;
+      --as-button-color-br: var(--as-button-ui-color-1);
+      --as-button-color-fg: var(--as-button-ui-color-1);
+    }
+    &.as-button--variant-tertiary {
+      --as-button-color-bg: var(--as-button-tertiary-background);
+      --as-button-color-br: var(--as-button-tertiary-background);
+      --as-button-color-fg: var(--as-button-ui-color-1);
+    }
+  }
+  &--color-success {
+    &.as-button--variant-primary {
+      --as-button-color-bg: var(--border-success, #00a800);
+      --as-button-color-br: var(--border-success, #00a800);
+      --as-button-color-fg: var(--fill-success-weak, #e5ffe5);
+    }
+    &.as-button--variant-secondary {
+      --as-button-color-bg: var(--fill-success-weak, #e5ffe5);
+      --as-button-color-br: var(--border-success, #00a800);
+      --as-button-color-fg: var(--text-success, #00a800);
+    }
+    &.as-button--variant-tertiary {
+      --as-button-color-bg: var(--as-button-tertiary-background);
+      --as-button-color-br: var(--as-button-tertiary-background);
+      --as-button-color-fg: var(--text-success, #00a800);
+    }
+  }
+  &--color-error {
+    &.as-button--variant-primary {
+      --as-button-color-bg: var(--text-error, #cc0000);
+      --as-button-color-br: var(--border-error, #cc0000);
+      --as-button-color-fg: var(--fill-error-weak, #fcf2f2);
+    }
+    &.as-button--variant-secondary {
+      --as-button-color-bg: var(--fill-error-weak, #fcf2f2);
+      --as-button-color-br: var(--border-error, #cc0000);
+      --as-button-color-fg: var(--text-error, #cc0000);
+    }
+    &.as-button--variant-tertiary {
+      --as-button-color-bg: var(--as-button-tertiary-background);
+      --as-button-color-br: var(--as-button-tertiary-background);
+      --as-button-color-fg: var(--text-error, #cc0000);
+    }
+  }
+  &--color-help {
+    &.as-button--variant-primary {
+      --as-button-color-bg: var(--text-help, #007db1);
+      --as-button-color-br: var(--border-help, #007db1);
+      --as-button-color-fg: var(--fill-help-weak, #f2f6f8);
+    }
+    &.as-button--variant-secondary {
+      --as-button-color-bg: var(--fill-help-weak, #f2f6f8);
+      --as-button-color-br: var(--border-help, #007db1);
+      --as-button-color-fg: var(--text-help, #007db1);
+    }
+    &.as-button--variant-tertiary {
+      --as-button-color-bg: var(--as-button-tertiary-background);
+      --as-button-color-br: var(--as-button-tertiary-background);
+      --as-button-color-fg: var(--text-help, #007db1);
+    }
+  }
+  &--color-info {
+    &.as-button--variant-primary {
+      --as-button-color-bg: var(--text-help, #007db1);
+      --as-button-color-br: var(--border-help, #007db1);
+      --as-button-color-fg: var(--fill-help-weak, #f2f6f8);
+    }
+    &.as-button--variant-secondary {
+      --as-button-color-bg: var(--fill-help-weak, #f2f6f8);
+      --as-button-color-br: var(--border-help, #007db1);
+      --as-button-color-fg: var(--text-help, #007db1);
+    }
+    &.as-button--variant-tertiary {
+      --as-button-color-bg: var(--as-button-tertiary-background);
+      --as-button-color-br: var(--as-button-tertiary-background);
+      --as-button-color-fg: var(--text-help, #007db1);
+    }
+  }
+  &--color-warning {
+    &.as-button--variant-primary {
+      --as-button-color-bg: var(--text-warning, #ff8744);
+      --as-button-color-br: var(--border-warning, #ff8744);
+      --as-button-color-fg: var(--fill-warning-weak, #fff8dd);
+    }
+    &.as-button--variant-secondary {
+      --as-button-color-bg: var(--fill-warning-weak, #fff8dd);
+      --as-button-color-br: var(--border-warning, #ff8744);
+      --as-button-color-fg: var(--text-warning, #ff8744);
+    }
+    &.as-button--variant-tertiary {
+      --as-button-color-bg: var(--as-button-tertiary-background);
+      --as-button-color-br: var(--as-button-tertiary-background);
+      --as-button-color-fg: var(--text-warning, #ff8744);
+    }
+  }
+  &[data-loading='true'],
+  &[aria-busy='true'] {
+    cursor: progress;
+    color: transparent;
+    & > *:not(.as-button__loading):not(.as-button__ripple) {
+      visibility: hidden;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .as-button:active {
+    transform: none;
+  }
+}
+
+@keyframes as-button-ellipsis {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.25;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.6);
+    opacity: 0.25;
+  }
+}
+
+@keyframes as-button-ripple {
+  to {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+:root,
+:root[data-theme='light'] {
+  /*********************************************************************************************************************************/
+  /* From `https://cdn.jsdelivr.net/npm/@aurodesignsystem/design-tokens@latest/dist/themes/alaska/CSSCustomProperties--alaska.css` */
+  /*********************************************************************************************************************************/
+  --as-button-flat-text: #676767;
+  --as-button-flat-text-disabled: #d0d0d0;
+  --as-button-flat-text-hover: #525252;
+  --as-button-primary-background: #01426a;
+  --as-button-primary-background-disabled: #acc9e2;
+  --as-button-primary-background-hover: #00274a;
+  --as-button-primary-background-inactive: #cfe0ef;
+  --as-button-primary-background-inactive-hover: #89b2d4;
+  --as-button-primary-border: #01426a;
+  --as-button-primary-border-disabled: #acc9e2;
+  --as-button-primary-border-hover: #00274a;
+  --as-button-primary-text: #ffffff;
+  --as-button-primary-text-disabled: #ffffff;
+  --as-button-secondary-background: #ffffff;
+  --as-button-secondary-background-disabled: #f7f7f7;
+  --as-button-secondary-background-hover: #f2f2f2;
+  --as-button-secondary-border: #01426a;
+  --as-button-secondary-border-hover: #00274a;
+  --as-button-secondary-border-disabled: #cfe0ef;
+  --as-button-secondary-text: #01426a;
+  --as-button-secondary-text-hover: #00274a;
+  --as-button-tertiary-background: #0000000d;
+  --as-button-tertiary-background-hover: #0000001a;
+  --as-button-tertiary-text: #01426a;
+  --as-button-tertiary-text-hover: #00274a;
+  --as-button-ghost-background-hover: #0000000d;
+  --as-button-ghost-text: #01426a;
+  --as-button-ghost-text-disabled: #d0d0d0;
+  --as-button-ui-color-1: #2c67b5;
+  --as-button-ui-color-2: #d6dfea;
+}
+
+@media screen {
+  :root[data-theme='dark'] {
+    --as-button-flat-text: #ffffff;
+    --as-button-flat-text-disabled: #7e8894;
+    --as-button-flat-text-hover: #adadad;
+    --as-button-primary-background: #ffffff;
+    --as-button-primary-background-disabled: #ffffffbf;
+    --as-button-primary-background-hover: #ebf3f9;
+    --as-button-primary-border: #ffffff;
+    --as-button-primary-border-disabled: #ffffffbf;
+    --as-button-primary-border-hover: #ebf3f9;
+    --as-button-primary-text: #01426a;
+    --as-button-secondary-background-hover: #ffffff1a;
+    --as-button-secondary-border: #ffffff;
+    --as-button-secondary-border-disabled: #dddddd;
+    --as-button-secondary-text: #ffffff;
+    --as-button-tertiary-background: #ffffff0d;
+    --as-button-tertiary-background-hover: #ffffff1a;
+    --as-button-tertiary-text: #ffffff;
+    --as-button-ghost-background-hover: #ffffff0d;
+    --as-button-ghost-text: #ffffff;
+    --as-button-ghost-text-disabled: #7e8894;
+    --as-button-ui-color-1: #d6dfea;
+    --as-button-ui-color-2: #2c67b5;
+  }
+}
