@@ -94,7 +94,7 @@ function resetGame() {
     killGame();
   } else {
     resetReady = true;
-    document.getElementById('reset-button').innerText = 'Confirm';
+    document.getElementById('reset-button').innerText = 'Confirm?';
   }
 }
 

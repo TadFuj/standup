@@ -7,7 +7,7 @@
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
   <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
   <link rel="stylesheet" type="text/css" href="./styles/brand.css">
-  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" type="text/css" href="./styles/styles.css">
   <link rel="icon" type="image/x-icon" href="/aaglogoicon.ico">
   <title>Standup Assistant</title>
 </head>
@@ -46,13 +46,16 @@
               <fieldset>
                 <legend>Setup</legend>
                 <div class="form-item"><label for="ta-players">*Players</label>
-                <textarea id="ta-players" name="ta-players" rows="12" placeholder="Player 1\nPlayer 2\n..."
-                  form="player-form" spellcheck="false" required></textarea></div>
+                  <textarea id="ta-players" name="ta-players" rows="12" placeholder="Player 1\nPlayer 2\n..."
+                    form="player-form" spellcheck="false" required></textarea>
+                </div>
                 <div class="form-item"><label for="ta-bosses">Final Round</label>
-                <textarea id="ta-bosses" name="ta-bosses" rows="8" placeholder="Principals\nAnalysts\nDrachenmeisters"
-                  form="player-form" spellcheck="false"></textarea></div>
+                  <textarea id="ta-bosses" name="ta-bosses" rows="8" placeholder="Principals\nAnalysts\nDrachenmeisters"
+                    form="player-form" spellcheck="false"></textarea>
+                </div>
               </fieldset>
-              <div class="button-container"><button class="as-button" id="btn-start" type="submit"><span>START</span></button></div>
+              <div class="button-container"><button class="as-button" id="btn-start"
+                  type="submit"><span>START</span></button></div>
             </form>
           </div>
         </div>
@@ -60,10 +63,15 @@
           <canvas id="main-canvas"></canvas>
           <div class="game-controls">
             <div class="game-controls-flex">
-              <button class="as-button" id="reset-button" onclick="resetGame()"><span>Reset</span></button>
-              <button class="as-button" onclick="nextPlayer()"><span>Next Player</span></button>
-              <button class="as-button" onclick="sendPlayerBack()"><span>Send Back</span></button>
-              <button class="as-button" onclick="addParkingLot()"><span>+PL</span></button>
+              <div class="game-controls-flex-col0"><button class="as-button btn-null" onclick="javascript:void(0)">Null</button></div>
+              <div class="game-controls-flex-col1">
+                <button class="as-button" onclick="nextPlayer()"><span>Next Player</span></button>
+                <button class="as-button" onclick="sendPlayerBack()"><span>Send Back</span></button>
+                <button class="as-button" onclick="addParkingLot()"><span>+PL</span></button>
+              </div>
+              <div class="game-controls-flex-col2">
+                <button class="as-button" id="reset-button" onclick="resetGame()"><span>Reset</span></button>
+              </div>
             </div>
           </div>
         </div>
@@ -75,11 +83,10 @@
       </div>
       <hr />
       <div id="game-hints">
-        <button class="as-button secondary btn-desc" id="hint-button" onclick="showHideDescription()">Show Description</button>
+        <button class="as-button secondary btn-desc" id="hint-button" onclick="showHideDescription()">Show
+          Description</button>
         <div class="box-text" id="hint-content">
-          <h2>This is a daily standup assistant.</h2>
-          <p>You can use it to pick random team members to give their update during a daily standup, roundtable
-            discussion, icebreaker, whatever you want!</p>
+          <p>Use this web utility to choose team members randomly for providing updates during a daily standup, roundtable discussion, icebreaker, or whatever else applicable.</p>
           <h3>Players:</h3>
           <ul>
             <li>All people listed in the players section will be randomized and one by one will be selected to give
